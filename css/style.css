@@ -1,0 +1,144 @@
+*{margin: 0;padding: 0;}
+a {
+    text-decoration: none;
+    color: #29323d;
+    font-family: msyh,'微软雅黑';
+    font-size: 12px;
+}
+li {
+    list-style: none;
+}
+body {
+    background: #f1f4f6;
+}
+nav {
+    width: 1440px;
+    height: 65px;
+}
+nav .nav-left {
+    height: 100%;
+    width: 256px;
+    float: left;
+    background-color:#00284d;
+}
+nav .nav-right {
+    width: 1184px;
+    height: 100%;
+    float: right;
+    background-color: rgba(255, 255, 255, 1);
+}
+main {
+    width: 1440px;
+}
+main .table-left {
+    width: 256px;
+    background: #e5eaee;
+    float: left;
+    text-align: left;
+}
+main .table-left .main {
+    width: 256px;
+    height: 61px;
+    display: block;
+    cursor: pointer;
+    line-height: 61px;
+    font-size: 14px;
+    padding-left:18%;
+    color: #FFFFFF;
+}
+main .table-left .navbar-inverse {
+    background: rgb(0, 21, 41);
+}
+main .table-left li {
+    margin: 0;
+}
+main .table-left li a { 
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.647058823529412);
+    padding-left:18%;   
+}
+main .table-left li a:hover {
+    color: rgba(255, 255, 255, 1); 
+    background: #337ab7;
+}
+main .table-left li a:focus {
+    color: rgba(255, 255, 255, 1); 
+    background: #337ab7;
+}
+main .table-left .nav-pills>li>a {
+    border-radius: inherit;
+}
+main .table-right {
+    width: 1134px;
+    height: 842px;
+    margin: 25px;
+    background: white;
+    float: left;
+}
+main .table-right .table-title {
+    height: 37px;
+    line-height: 37px;
+    font-size: 16px;
+}
+.table-main {
+    display: none;
+}
+main .table-right .table-show {
+    display: block;
+}
+main .table-right .table-main h3 {
+    margin: 30px;
+}
+main .table-right .table-report .button-control {
+    margin: 30px 275px;
+}
+main .table-right .table-report .button-control button {
+    margin: 15px;
+}
+main .table-right .table-report .form-horizontal .btn-primary {
+    margin: 10px 46%;
+    border-radius: 17px;
+}
+main .table-right .table-report .increase-input {
+    position: relative;
+}
+main .table-right .table-report .increase-input button.btn-primary {
+    position: absolute;
+    right: -42px;
+    top: 0;
+    margin: 0;
+}
+
+main .table-right .table-draft th:nth-of-type(1) {
+    width: 90px;
+}
+main .table-right .table-draft th:nth-of-type(2) {
+    width: 120px;
+}
+main .table-right .table-draft th:nth-of-type(3) {
+    width: 100px;
+}
+main .table-right .table-draft th:nth-of-type(4) {
+    width: 300px;
+}
+main .table-right .table-draft th:nth-of-type(5) {
+    width: 240px;
+}
+main .table-right .table-draft th:nth-of-type(6) {
+    width: 210px;
+}
+main .table-right .table-draft th:nth-of-type(7) {
+    width: 70px;
+}
+main .nav-pills {
+    height: 955px;
+}
+.success-modal {
+    position: absolute;
+    left: 50%;
+    top: 79%;
+    display: none;
+    padding: 10px;
+    background: white;
+    box-shadow:  4px 8px 24px -3px #9f9faf;
+}
