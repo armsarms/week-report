@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./js/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/index.js"></script>
+    <title>weekReport</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left"></div>
+        <div class="nav-right"></div>
+    </nav>
+    <main>
+        <div class="table-left">
+
+            <ul class="nav nav-pills nav-stacked navbar-inverse">
+                <span class="main">周报管理</span>
+                <li>
+                    <a href="#" data-table-name="table-report">新建周报</a>
+                </li>
+                <li>
+                    <a href="#" data-table-name="table-draft">草稿箱</a>
+                </li>
+                <li>
+                    <a href="#" data-table-name="table-history">周报历史</a>
+                </li>
+                <li>
+                    <a href="#" data-table-name="table-receive">收到的周报</a>
+                </li>
+            </ul>
+        </div>
+        <div class="table-right">
+            <!-- <div class="table-title">周报系统</div> -->
+            <div class="container-fluid">
+                <!-- <div class="navbar-header">
+                    <a class="navbar-brand" href="#">周报系统</a>
+                </div> -->
+                <!-- 搜索 -->
+                <!-- <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button class="btn btn-default table-find">搜索</button>
+                    <button class="btn btn-default table-inset">增加</button>
+                </form> -->
+                <!-- 搜索end -->
+            </div>
+
+            <div class="table-report table-main">
+                <h3>新建周报</h3>
+                <form class="form-horizontal" role="form" id="newForm">
+                    <div class="form-group report-time">
+                        <label class="col-sm-2 control-label">选择时间区间：</label>
+                        <div class="col-sm-5">
+                            <input class="form-control" id="reportTime" type="week" name="report-time">
+                        </div>
+                        <!-- <label style="float:left;line-height:33.9px;">--</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" id="reportTimeEnd" type="date" name="timeEnd">
+                        </div> -->
+                    </div>
+                    <div class="form-group report-group">
+                        <label for="reportGroup" class="col-sm-2 control-label">所属组别：</label>
+                        <div class="col-sm-5">
+                            <select id="reportGroup" class="form-control" name="group">
+                                <option value="服务支撑组">服务支撑组</option>
+                                <option value="结算管理组">结算管理组</option>
+                                <option value="技术支撑组">技术支撑组</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="new-group" data-number="0">
+                        <hr>
+                        <input type="checkbox" class="new-group-check">
+                        <div class="form-group report-title">
+                            <label class="col-sm-2 control-label">周报标题：</label>
+                            <div class="col-sm-5">
+                                <input class="form-control reportTitle" type="text" name="title">
+                            </div>
+                        </div>
+                        <div class="form-group report-week">
+                            <label class="col-sm-2 control-label">本周重点工作：</label>
+                            <div class="col-sm-5">
+                                <textarea class="form-control reportWeek" rows="5" name="reportWeek"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group report-next-week">
+                            <label class="col-sm-2 control-label">下周计划：</label>
+                            <div class="col-sm-5">
+                                <textarea class="form-control reportNextWeek" rows="3" name="reportNextWeek"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group report-consort">
+                            <label class="col-sm-2 control-label">需领导协调事项：</label>
+                            <div class="col-sm-5">
+                                <textarea class="form-control reportConsort" rows="3" name="reportConsort"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="crease-btn">
+                        <div class="increase-btn">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span>增加 </span>
+                        </div>
+                        <div class="decrease-btn">
+                            <span class="glyphicon glyphicon-minus"></span>
+                            <span>减少</span>
+                        </div>
+                    </div>
+                    <hr>
+                </form>
+                <div class="button-control">
+                    <button type="button" class="btn btn-primary" id="btnPrimary">提交</button>
+                    <!-- 表示一个成功的或积极的动作 -->
+                    <button type="button" class="btn btn-success" id="btnSuccess">保存</button>
+                    <!-- 表示应谨慎采取的动作 -->
+                    <button type="button" class="btn btn-warning" id="btnWarning">取消保存</button>
+                </div>
+            </div>
+            <div class="table-draft table-main">
+                <h3>草稿箱</h3>
+                <div class="table-nav navbar-right">
+                    <ul>
+                        <li>
+                            <button class="btn btn-primary" id="draftSumit">提交</button>
+                        </li>
+                        <li>
+                            <button class="btn btn-success" id="draftChange">修改</button>
+                        </li>
+                        <li>
+                            <button class="btn btn-warning" id="draftDel">删除</button>
+                        </li>
+                    </ul>
+                </div>
+                <table class="table table-hover">
+                    <!-- <caption>周报</caption> -->
+                    <thead>
+                        <tr>
+                            <th class="table-sm-20"></th>
+                            <th class="table-sm-90">时间</th>
+                            <th class="table-sm-100">组别</th>
+                            <th class="table-sm-120">标题</th>
+                            <th class="table-sm-300">本周重点工作</th>
+                            <th class="table-sm-240">下周计划</th>
+                            <th class="table-sm-210">需领导协调事项</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>2018-W14</td>
+                            <td>技术支撑组</td>
+                            <td>与能力部计费SDK需求管理协同</td>
+                            <td>1、与能力部开展计费SDK需求管理协同
+                                <br>2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                <br>3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                            </td>
+                            <td>1、取消电气控制传统的“一对一”硬手操方式,将电气量的监控纳入到DCS系统中
+                                <br> 2、预防为主、综合治理”的方针
+                                <br> 3、持续开展“访惠聚”驻村工作,充分发挥驻村工作队、深度贫困村第一书记作用。
+                            </td>
+                            <td>1、取消电气控制传统的“一对一”硬手操方式</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>2018-W15</td>
+                            <td>服务支撑组</td>
+                            <td>测试计费SDK</td>
+                            <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                <br>2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                <br>4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                            </td>
+                            <td>1、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                <br>2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                <br>3、取消电气控制传统的“一对一”硬手操方式。将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                            </td>
+                            <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>2018-W16</td>
+                            <td>技术支撑组</td>
+                            <td>制作周报管理系统</td>
+                            <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                <br> 4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                            </td>
+                            <td>1、将十个方面的重点工作进行细化、量化</td>
+                            <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                <br> 4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-history table-main">
+                <h3>周报历史</h3>
+                <table class="table table-hover">
+                    <!-- <caption>周报</caption> -->
+                    <thead>
+                        <tr>
+                            <th class="table-sm-100">组别</th>
+                            <th class="table-sm-120">标题</th>
+                            <th class="table-sm-90">负责人</th>
+                            <th class="table-sm-300">本周重点工作</th>
+                            <th class="table-sm-240" th>下周计划</th>
+                            <th class="table-sm-210">需领导协调事项</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>技术支撑组</td>
+                            <td>与能力部计费SDK需求管理协同</td>
+                            <td>XXX</td>
+                            <td>1、与能力部开展计费SDK需求管理协同
+                                <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                            </td>
+                            <td>1、取消电气控制传统的“一对一”硬手操方式,将电气量的监控纳入到DCS系统中
+                                <br> 2、预防为主、综合治理”的方针
+                                <br> 3、持续开展“访惠聚”驻村工作,充分发挥驻村工作队、深度贫困村第一书记作用。
+                            </td>
+                            <td>1、取消电气控制传统的“一对一”硬手操方式</td>
+                        </tr>
+                        <tr>
+                            <td>服务支撑组</td>
+                            <td>测试计费SDK</td>
+                            <td>XY</td>
+                            <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                <br> 4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                            </td>
+                            <td>1、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                <br> 3、取消电气控制传统的“一对一”硬手操方式。将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                            </td>
+                            <td>abcdefghijklmnopqrstuvwxyz</td>
+                        </tr>
+                        <tr>
+                            <td>技术支撑组</td>
+                            <td>制作周报管理系统</td>
+                            <td>Toly</td>
+                            <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                <br>3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                <br>4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                            </td>
+                            <td>1、将十个方面的重点工作进行细化、量化</td>
+                            <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                <br>2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                <br>3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                <br> 4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-receive table-main">
+                <h3>收到的周报</h3>
+                <div class="table-nav">
+                    <ul>
+                        <li>
+                            <button class="btn btn-primary">全部周报</button>
+                        </li>
+                        <li>
+                            <button class="btn btn-primary">未看周报</button>
+                        </li>
+                        <li>
+                            <button class="btn btn-primary">已看周报</button>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button class="btn btn-default table-find">搜索</button>
+                    </form>
+                </div>
+                <table class="table table-hover">
+                    <!-- <caption>周报</caption> -->
+                    <tbody>
+                        <tr>
+                            <td class="table-sm-20">
+                                <input type="checkbox">
+                            </td>
+                            <td>服务支撑室各组工作周报
+                                <br>（2018.3.1—2018.3.5）</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>服务支撑室各组工作周报
+                                <br>（2018.3.6—2018.3.8）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+    <!-- successModal -->
+    <div class="success-modal">ssss</div>
+    <!-- end -->
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <!-- <caption>周报</caption> -->
+                        <thead>
+                            <tr>
+                                <th class="table-sm-100">组别</th>
+                                <th class="table-sm-120">标题</th>
+                                <th class="table-sm-90">负责人</th>
+                                <th class="table-sm-300">本周重点工作</th>
+                                <th class="table-sm-240" th>下周计划</th>
+                                <th class="table-sm-210">需领导协调事项</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>技术支撑组</td>
+                                <td>与能力部计费SDK需求管理协同</td>
+                                <td>xxy</td>
+                                <td>1、与能力部开展计费SDK需求管理协同
+                                    <br>2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                    <br>3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                </td>
+                                <td>1、取消电气控制传统的“一对一”硬手操方式,将电气量的监控纳入到DCS系统中
+                                    <br> 2、预防为主、综合治理”的方针
+                                    <br> 3、持续开展“访惠聚”驻村工作,充分发挥驻村工作队、深度贫困村第一书记作用。
+                                </td>
+                                <td>1、取消电气控制传统的“一对一”硬手操方式</td>
+                                <td>
+                                    <button class="btn btn-default" data-toggle="modal" data-target="#mySelect">转发</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>技术支撑组</td>
+                                <td>测试计费SDK</td>
+                                <td>Toly</td>
+                                <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                    <br>2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                    <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                    <br>4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                </td>
+                                <td>1、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                    <br>2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                    <br>3、取消电气控制传统的“一对一”硬手操方式。将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                </td>
+                                <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措</td>
+                                <td>
+                                    <button class="btn btn-default forwarding" data-toggle="modal" data-target="#mySelect">转发</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>服务支撑组</td>
+                                <td>制作周报管理系统</td>
+                                <td>JASON</td>
+                                <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                    <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                    <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                    <br> 4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                </td>
+                                <td>1、将十个方面的重点工作进行细化、量化</td>
+                                <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                    <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                    <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                    <br> 4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                </td>
+                                <td>
+                                    <button class="btn btn-default forwarding" data-toggle="modal" data-target="#mySelect">转发</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">提交更改</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="mySelect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">转发周报</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="name">请选择你要转发的人员</label>
+                            <select multiple class="form-control">
+                                <option>Toly</option>
+                                <option>far</option>
+                                <option>move</option>
+                                <option>more</option>
+                                <option>apple</option>
+                                <option>airplane</option>
+                                <option>selcet</option>
+                                <option>angel</option>
+                                <option>little buster</option>
+                                <option>charlotte</option>
+                                <option>P.A.work</option>
+                                <option>Key</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">确认转发</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</body>
+
+</html>
