@@ -12,26 +12,28 @@ body {
     background: #f1f4f6;
 }
 nav {
-    width: 1440px;
+    width: 100%;
+    min-width: 1200px;
     height: 65px;
 }
 nav .nav-left {
     height: 100%;
-    width: 256px;
+    width: 16%;
     float: left;
     background-color:#00284d;
 }
 nav .nav-right {
-    width: 1184px;
+    width: 84%;
     height: 100%;
     float: right;
     background-color: rgba(255, 255, 255, 1);
 }
 main {
-    width: 1440px;
+    width: 100%;
+    min-width: 1200px;
 }
 main .table-left {
-    width: 256px;
+    width: 16%;
     background: #e5eaee;
     float: left;
     text-align: left;
@@ -72,7 +74,7 @@ main .table-right .table-report .form-horizontal {
     margin-top: 30px;
 }
 main .table-right {
-    width: 1134px;
+    width: 79.5%;
     min-height: 842px;
     margin: 25px;
     background: white;
@@ -174,9 +176,9 @@ main .table-receive .table tr {
     cursor: pointer;
 }
 .success-modal {
-    position: absolute;
-    left: 50%;
-    top: 79%;
+    position: fixed;
+    left: 44%;
+    top: 42%;
     display: none;
     padding: 10px;
     background: white;
