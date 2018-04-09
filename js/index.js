@@ -41,22 +41,20 @@ $(function () {
                 }
                 break;
             case 'btnPrimary':
-                if (form[0].value != '' && form[1].value != '' && $(".new-group .reportTitle").val() != '' &&  $(".new-group .reportWeek").val() != '' &&  $(".new-group .reportNextWeek").val() != '' ){
+                if (form[0].value != '' && form[1].value != '' && $(".new-group .reportTitle").val() != '' && $(".new-group .reportWeek").val() != '' && $(".new-group .reportNextWeek").val() != '') {
                     $('.success-modal').show().fadeOut(2000).text('提交成功');
                 } else {
                     $('.success-modal').show().fadeOut(2000).text('提交失败');
                 }
                 break;
+            case 'btnWarning':
+                $("[data-table-name='table-report']").click();
         }
     })
     //增加项目
     $('.increase-btn').click(function () {
         var html = "<div class='new-group' data-number=" + i++ + "><hr><input type='checkbox' class='new-group-check'><div class='form-group report-title'><label class='col-sm-2 control-label'>周报标题：</label><div class='col-sm-5'><input class='form-control reportTitle' type='text' name='title'></div></div><div class='form-group report-week'><label class='col-sm-2 control-label'>本周重点工作：</label><div class='col-sm-5'><textarea class='form-control reportWeek' rows='5' name='reportWeek'></textarea></div></div><div class='form-group report-next-week'><label class='col-sm-2 control-label'>下周计划：</label><div class='col-sm-5'><textarea class='form-control reportNextWeek' rows='3' id='reportNextWeek'></textarea></div></div><div class='form-group report-consort'><label class='col-sm-2 control-label'>需领导协调事项：</label><div class='col-sm-5'><textarea class='form-control reportConsort' rows='3' name='reportConsort'></textarea></div></div></div>"
         $(html).insertBefore(".crease-btn");
-        // $(".new-group").last().clone().insertBefore(".crease-btn");
-        // $(".new-group").last().find('input,textarea').each(function () {
-        //     $(this).val('');
-        // });
     })
     // 减少项目
     $('.decrease-btn').click(function () {
@@ -66,9 +64,6 @@ $(function () {
         } else if ($check.length == 0) {
             $('.success-modal').show().fadeOut(2000).text('请至少选中一个选框');
         }
-        // if ($(".new-group").length > 1) {
-        //     $(".new-group").last().remove();
-        // }
     })
     //删除项目
     $('#draftDel').click(function () {
@@ -78,9 +73,6 @@ $(function () {
         } else if ($check.length == 0) {
             $('.success-modal').show().fadeOut(2000).text('请至少选中一个选框');
         }
-        // if ($(".new-group").length > 1) {
-        //     $(".new-group").last().remove();
-        // }
     })
     // 修改草稿
     $('#draftChange').click(function () {
@@ -132,9 +124,6 @@ $(function () {
         } else if ($check.length == 0) {
             $('.success-modal').show().fadeOut(2000).text('请至少选中一个选框');
         }
-        // if ($(".new-group").length > 1) {
-        //     $(".new-group").last().remove();
-        // }
     })
     //点击输入框清除标红样式
     $("#reportTime,#reportGroup").click(function () {
