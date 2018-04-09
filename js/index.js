@@ -1,18 +1,21 @@
 $(function () {
+    //全局变量i，作为新建周报模块里面的data-number标记
     var i = 1;
+    //点击导航
     $('.table-left ul.nav li').click(function () {
         $('.table-left ul.nav li').removeClass('active');
         $(this).addClass('active');
         var tableName = $(this).find('a').attr('data-table-name');
         $('.table-right .table-main').removeClass('table-show');
         $('.' + tableName).addClass('table-show');
+        //点击新建周报时，清空表单
         if (tableName == 'table-report') {
             $('#newForm :input').not(':button').val('').removeAttr('checked');
             $('.new-group').eq(0).siblings('.new-group').remove();
             $('.redWarning').removeClass('redWarning')
         }
     })
-
+    //新建周报内按钮
     $('.table-report button').click(function () {
         var form = $("#newForm").serializeArray();
         switch ($(this).attr('id')) {
@@ -46,7 +49,7 @@ $(function () {
                 break;
         }
     })
-
+    //增加项目
     $('.increase-btn').click(function () {
         var html = "<div class='new-group' data-number=" + i++ + "><hr><input type='checkbox' class='new-group-check'><div class='form-group report-title'><label class='col-sm-2 control-label'>周报标题：</label><div class='col-sm-5'><input class='form-control reportTitle' type='text' name='title'></div></div><div class='form-group report-week'><label class='col-sm-2 control-label'>本周重点工作：</label><div class='col-sm-5'><textarea class='form-control reportWeek' rows='5' name='reportWeek'></textarea></div></div><div class='form-group report-next-week'><label class='col-sm-2 control-label'>下周计划：</label><div class='col-sm-5'><textarea class='form-control reportNextWeek' rows='3' id='reportNextWeek'></textarea></div></div><div class='form-group report-consort'><label class='col-sm-2 control-label'>需领导协调事项：</label><div class='col-sm-5'><textarea class='form-control reportConsort' rows='3' name='reportConsort'></textarea></div></div></div>"
         $(html).insertBefore(".crease-btn");
@@ -55,7 +58,7 @@ $(function () {
         //     $(this).val('');
         // });
     })
-
+    // 减少项目
     $('.decrease-btn').click(function () {
         var $check = $('.new-group .new-group-check:checked');
         if ($check.length > 0) {
@@ -67,7 +70,7 @@ $(function () {
         //     $(".new-group").last().remove();
         // }
     })
-
+    //删除项目
     $('#draftDel').click(function () {
         var $check = $('.table-draft .table input:checked');
         if ($check.length > 0) {
@@ -79,7 +82,7 @@ $(function () {
         //     $(".new-group").last().remove();
         // }
     })
-
+    // 修改草稿
     $('#draftChange').click(function () {
         var $check = $('.table-draft .table-hover input:checked');
         //if()，如果new-group.length>1,删除，否则，加一
@@ -121,8 +124,7 @@ $(function () {
             $('.success-modal').show().fadeOut(2000).text('请选中一个选框');
         }
     })
-
-
+    // 提交草稿
     $('#draftSumit').click(function () {
         var $check = $('.table-draft .table input:checked');
         if ($check.length > 0) {
@@ -134,15 +136,15 @@ $(function () {
         //     $(".new-group").last().remove();
         // }
     })
-
+    //点击输入框清除标红样式
     $("#reportTime,#reportGroup").click(function () {
         $(this).removeClass('redWarning');
     })
-
+    //点击接收周报内的表格，获取到表名
     $('.table-receive tr').click(function () {
         $('#myModal').modal('show').find('.modal-title').text($(this).find('td').text())
     })
-
+    //模态框嵌套，解决关闭一个后另一个滚动条消失的问题
     $('.modal').on('hidden.bs.modal', function () {
         if ($('.modal.in').size() >= 1) {
             $('body').addClass('modal-open')

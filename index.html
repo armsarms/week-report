@@ -20,7 +20,7 @@
     </nav>
     <main>
         <div class="table-left">
-
+            <!-- 左端导航条 -->
             <ul class="nav nav-pills nav-stacked navbar-inverse">
                 <span class="main">周报管理</span>
                 <li class="active">
@@ -38,22 +38,7 @@
             </ul>
         </div>
         <div class="table-right">
-            <!-- <div class="table-title">周报系统</div> -->
-            <div class="container-fluid">
-                <!-- <div class="navbar-header">
-                    <a class="navbar-brand" href="#">周报系统</a>
-                </div> -->
-                <!-- 搜索 -->
-                <!-- <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button class="btn btn-default table-find">搜索</button>
-                    <button class="btn btn-default table-inset">增加</button>
-                </form> -->
-                <!-- 搜索end -->
-            </div>
-
+            <!-- 新建周报，默认 -->
             <div class="table-report table-main table-show">
                 <h3>新建周报</h3>
                 <form class="form-horizontal" role="form" id="newForm">
@@ -62,10 +47,6 @@
                         <div class="col-sm-5">
                             <input class="form-control" id="reportTime" type="week" name="report-time">
                         </div>
-                        <!-- <label style="float:left;line-height:33.9px;">--</label>
-                        <div class="col-sm-2">
-                            <input class="form-control" id="reportTimeEnd" type="date" name="timeEnd">
-                        </div> -->
                     </div>
                     <div class="form-group report-group">
                         <label for="reportGroup" class="col-sm-2 control-label">所属组别：</label>
@@ -125,6 +106,7 @@
                     <button type="button" class="btn btn-warning" id="btnWarning">取消保存</button>
                 </div>
             </div>
+            <!-- 草稿箱 -->
             <div class="table-draft table-main">
                 <h3>草稿箱</h3>
                 <div class="table-nav navbar-right">
@@ -211,10 +193,10 @@
                     </tbody>
                 </table>
             </div>
+            <!-- 历史 -->
             <div class="table-history table-main">
                 <h3>周报历史</h3>
                 <table class="table table-hover">
-                    <!-- <caption>周报</caption> -->
                     <thead>
                         <tr>
                             <th class="table-sm-100">组别</th>
@@ -274,6 +256,7 @@
                     </tbody>
                 </table>
             </div>
+            <!-- 接收 -->
             <div class="table-receive table-main">
                 <h3>收到的周报</h3>
                 <div class="table-nav">
@@ -296,7 +279,6 @@
                     </form>
                 </div>
                 <table class="table table-hover">
-                    <!-- <caption>周报</caption> -->
                     <tbody>
                         <tr>
                             <td class="table-sm-20">
