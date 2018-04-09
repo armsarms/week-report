@@ -139,4 +139,24 @@ $(function () {
             $('body').addClass('modal-open')
         }
     })
+    getDates();
 })
+function getDates(currentTime) {//JS获取当前周从星期一到星期天的日期
+    var currentDate = new Date(currentTime)
+    console.log(currentDate);
+    var timesStamp = currentDate.getTime();
+    console.log(timesStamp);
+    var currenDay = currentDate.getDay();
+    console.log(currenDay);
+    var dates = [];
+    for (var i = 0; i < 7; i++) {
+        dates.push(new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 6) % 7)).toLocaleDateString().replace(/\//g, '-'));
+    }
+    return dates
+}
+
+function getWeekToDate() {
+    var week = $('#reportTime').val().split('-W');
+    var thisYear = new Date(week[0] + '-01-01');
+    var timesStamp = thisYear.getTime() + ((week[0] - 1 )* 7 * 24 * 60 * 60 * 1000);
+}
