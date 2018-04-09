@@ -122,6 +122,19 @@ $(function () {
         }
     })
 
+
+    $('#draftSumit').click(function () {
+        var $check = $('.table-draft .table input:checked');
+        if ($check.length > 0) {
+            $('.success-modal').show().fadeOut(2000).text('提交成功');
+        } else if ($check.length == 0) {
+            $('.success-modal').show().fadeOut(2000).text('请至少选中一个选框');
+        }
+        // if ($(".new-group").length > 1) {
+        //     $(".new-group").last().remove();
+        // }
+    })
+
     $("#reportTime,#reportGroup").click(function () {
         $(this).removeClass('redWarning');
     })
