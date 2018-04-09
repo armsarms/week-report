@@ -23,7 +23,7 @@
 
             <ul class="nav nav-pills nav-stacked navbar-inverse">
                 <span class="main">周报管理</span>
-                <li>
+                <li class="active">
                     <a href="#" data-table-name="table-report">新建周报</a>
                 </li>
                 <li>
@@ -54,7 +54,7 @@
                 <!-- 搜索end -->
             </div>
 
-            <div class="table-report table-main">
+            <div class="table-report table-main table-show">
                 <h3>新建周报</h3>
                 <form class="form-horizontal" role="form" id="newForm">
                     <div class="form-group report-time">
@@ -403,7 +403,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">提交更改</button>
+                    <button type="button" class="btn btn-primary"><a href="./test.xlsx" download="arms">下载表格</a></button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -442,7 +442,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary">确认转发</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">确认转发</button>
                 </div>
             </div>
             <!-- /.modal-content -->
