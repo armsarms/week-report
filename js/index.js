@@ -25,8 +25,9 @@ $(function () {
                 if (form[0].value != '' && form[1].value != '') {
                     for (var i = 0; i < $('.new-group').length; i++) {
                         //插入草稿箱
-                        $(".table-draft tbody").append("<tr><td><input type='checkbox'></td><td>" + time[0] + '~' + time[4] + "</td><td>" + form[1].value + "</td><td>" + $(".new-group .reportTitle").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");
+                        $(".table-draft tbody").prepend("<tr><td><input type='checkbox'></td><td style='display:none'>" + form[0].value + "</td><td>" + time[0] + '~' + time[4] + "</td><td>" + form[1].value + "</td><td>" + $(".new-group .reportTitle").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");
                         // form[4+4*i].value.replace(/\n|\r\n/g,'<br/>'),输入栏导入换行
+                        $('html,body').animate({scrollTop: '0px'}, 200);//滚动到顶部
                     }
                     if ($(".table-draft tr[data-change='inChange']").length == 1) {
                         $(".table-draft tr[data-change='inChange']").remove();
@@ -94,23 +95,24 @@ $(function () {
             }
             $check.parents('tr').find('td').each(function (i) {
                 switch (i) {
+                    // 0为单选框，1为隐藏的周数，2为显示的具体日期，3为组别，4工作，6计划，7领导
                     case 1:
                         $('#reportTime').val($(this).text());
                         break;
-                    case 2:
+                    case 3:
                         $('#reportGroup').val($(this).text());
                         break;
-                    case 3:
+                    case 4:
                         $('.reportTitle').val($(this).text());
                         break;
-                    case 4:
+                    case 5:
                         $('.reportWeek').val($(this).html().replace(/<br>/g, '\n'));
                         // $('.reportWeek').val($(this).html().replace(/\n|\r\n/g,'<br/>'));
                         break;
-                    case 5:
+                    case 6:
                         $('.reportNextWeek').val($(this).html().replace(/<br>/g, '\n'));
                         break;
-                    case 6:
+                    case 7:
                         $('.reportConsort').val($(this).html().replace(/<br>/g, '\n'));
                         break;
                 }
