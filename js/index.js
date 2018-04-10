@@ -18,11 +18,14 @@ $(function () {
     //新建周报内按钮
     $('.table-report button').click(function () {
         var form = $("#newForm").serializeArray();
+        var time = getWeekToDate();
         switch ($(this).attr('id')) {
+            //点击保存
             case 'btnSuccess':
                 if (form[0].value != '' && form[1].value != '') {
                     for (var i = 0; i < $('.new-group').length; i++) {
-                        $(".table-draft tbody").append("<tr><td><input type='checkbox'></td><td>" + form[0].value + "</td><td>" + form[1].value + "</td><td>" + $(".new-group .reportTitle").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");
+                        //插入草稿箱
+                        $(".table-draft tbody").append("<tr><td><input type='checkbox'></td><td>" + time[0] + '~' + time[4] + "</td><td>" + form[1].value + "</td><td>" + $(".new-group .reportTitle").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");
                         // form[4+4*i].value.replace(/\n|\r\n/g,'<br/>'),输入栏导入换行
                     }
                     if ($(".table-draft tr[data-change='inChange']").length == 1) {
@@ -40,6 +43,7 @@ $(function () {
                     $('.success-modal').show().fadeOut(2000).text('保存失败');
                 }
                 break;
+            //点击提交
             case 'btnPrimary':
                 if (form[0].value != '' && form[1].value != '' && $(".new-group .reportTitle").val() != '' && $(".new-group .reportWeek").val() != '' && $(".new-group .reportNextWeek").val() != '') {
                     $('.success-modal').show().fadeOut(2000).text('提交成功');
@@ -47,6 +51,7 @@ $(function () {
                     $('.success-modal').show().fadeOut(2000).text('提交失败');
                 }
                 break;
+            //点击取消
             case 'btnWarning':
                 $("[data-table-name='table-report']").click();
         }
@@ -139,24 +144,22 @@ $(function () {
             $('body').addClass('modal-open')
         }
     })
-    getDates();
 })
+// 根据周数算出该周工作日的日期
 function getDates(currentTime) {//JS获取当前周从星期一到星期天的日期
     var currentDate = new Date(currentTime)
-    console.log(currentDate);
     var timesStamp = currentDate.getTime();
-    console.log(timesStamp);
     var currenDay = currentDate.getDay();
-    console.log(currenDay);
     var dates = [];
     for (var i = 0; i < 7; i++) {
-        dates.push(new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 6) % 7)).toLocaleDateString().replace(/\//g, '-'));
+        dates.push(new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 6) % 7)).toLocaleDateString().replace(/\//g, '.'));
     }
     return dates
 }
-
-function getWeekToDate() {
+function getWeekToDate() {//由周数计算出该周内的某一日期
     var week = $('#reportTime').val().split('-W');
     var thisYear = new Date(week[0] + '-01-01');
-    var timesStamp = thisYear.getTime() + ((week[0] - 1 )* 7 * 24 * 60 * 60 * 1000);
+    var timesStamp = thisYear.getTime() + ((week[1] - 1 )* 7 * 24 * 60 * 60 * 1000);
+    return getDates(timesStamp);
 }
+//--------end------------
