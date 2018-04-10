@@ -20,7 +20,7 @@
     </nav>
     <main>
         <div class="table-left">
-
+            <!-- 左端导航条 -->
             <ul class="nav nav-pills nav-stacked navbar-inverse">
                 <span class="main">周报管理</span>
                 <li class="active">
@@ -38,22 +38,7 @@
             </ul>
         </div>
         <div class="table-right">
-            <!-- <div class="table-title">周报系统</div> -->
-            <div class="container-fluid">
-                <!-- <div class="navbar-header">
-                    <a class="navbar-brand" href="#">周报系统</a>
-                </div> -->
-                <!-- 搜索 -->
-                <!-- <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button class="btn btn-default table-find">搜索</button>
-                    <button class="btn btn-default table-inset">增加</button>
-                </form> -->
-                <!-- 搜索end -->
-            </div>
-
+            <!-- 新建周报，默认 -->
             <div class="table-report table-main table-show">
                 <h3>新建周报</h3>
                 <form class="form-horizontal" role="form" id="newForm">
@@ -62,15 +47,12 @@
                         <div class="col-sm-5">
                             <input class="form-control" id="reportTime" type="week" name="report-time">
                         </div>
-                        <!-- <label style="float:left;line-height:33.9px;">--</label>
-                        <div class="col-sm-2">
-                            <input class="form-control" id="reportTimeEnd" type="date" name="timeEnd">
-                        </div> -->
                     </div>
                     <div class="form-group report-group">
                         <label for="reportGroup" class="col-sm-2 control-label">所属组别：</label>
                         <div class="col-sm-5">
                             <select id="reportGroup" class="form-control" name="group">
+                                <option value="">请选择</option>
                                 <option value="服务支撑组">服务支撑组</option>
                                 <option value="结算管理组">结算管理组</option>
                                 <option value="技术支撑组">技术支撑组</option>
@@ -122,9 +104,10 @@
                     <!-- 表示一个成功的或积极的动作 -->
                     <button type="button" class="btn btn-success" id="btnSuccess">保存</button>
                     <!-- 表示应谨慎采取的动作 -->
-                    <button type="button" class="btn btn-warning" id="btnWarning">取消保存</button>
+                    <button type="button" class="btn btn-warning" id="btnWarning">清空表单</button>
                 </div>
             </div>
+            <!-- 草稿箱 -->
             <div class="table-draft table-main">
                 <h3>草稿箱</h3>
                 <div class="table-nav navbar-right">
@@ -158,7 +141,7 @@
                             <td>
                                 <input type="checkbox">
                             </td>
-                            <td>2018-W14</td>
+                            <td>2018.3.26~2018.3.30</td>
                             <td>技术支撑组</td>
                             <td>与能力部计费SDK需求管理协同</td>
                             <td>1、与能力部开展计费SDK需求管理协同
@@ -175,7 +158,7 @@
                             <td>
                                 <input type="checkbox">
                             </td>
-                            <td>2018-W15</td>
+                            <td>2018.3.26~2018.3.30</td>
                             <td>服务支撑组</td>
                             <td>测试计费SDK</td>
                             <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
@@ -193,7 +176,7 @@
                             <td>
                                 <input type="checkbox">
                             </td>
-                            <td>2018-W16</td>
+                            <td>2018.3.26~2018.3.30</td>
                             <td>技术支撑组</td>
                             <td>制作周报管理系统</td>
                             <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
@@ -211,17 +194,16 @@
                     </tbody>
                 </table>
             </div>
+            <!-- 历史 -->
             <div class="table-history table-main">
                 <h3>周报历史</h3>
                 <table class="table table-hover">
-                    <!-- <caption>周报</caption> -->
                     <thead>
                         <tr>
                             <th class="table-sm-100">组别</th>
                             <th class="table-sm-120">标题</th>
-                            <th class="table-sm-90">负责人</th>
                             <th class="table-sm-300">本周重点工作</th>
-                            <th class="table-sm-240" th>下周计划</th>
+                            <th class="table-sm-240">下周计划</th>
                             <th class="table-sm-210">需领导协调事项</th>
                         </tr>
                     </thead>
@@ -229,7 +211,6 @@
                         <tr>
                             <td>技术支撑组</td>
                             <td>与能力部计费SDK需求管理协同</td>
-                            <td>XXX</td>
                             <td>1、与能力部开展计费SDK需求管理协同
                                 <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
                                 <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
@@ -243,7 +224,6 @@
                         <tr>
                             <td>服务支撑组</td>
                             <td>测试计费SDK</td>
-                            <td>XY</td>
                             <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
                                 <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
                                 <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
@@ -258,7 +238,6 @@
                         <tr>
                             <td>技术支撑组</td>
                             <td>制作周报管理系统</td>
-                            <td>Toly</td>
                             <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
                                 <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
                                 <br>3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
@@ -274,6 +253,7 @@
                     </tbody>
                 </table>
             </div>
+            <!-- 接收 -->
             <div class="table-receive table-main">
                 <h3>收到的周报</h3>
                 <div class="table-nav">
@@ -296,7 +276,6 @@
                     </form>
                 </div>
                 <table class="table table-hover">
-                    <!-- <caption>周报</caption> -->
                     <tbody>
                         <tr>
                             <td class="table-sm-20">
