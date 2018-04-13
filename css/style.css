@@ -73,6 +73,12 @@ main .table-left .nav-pills>li>a {
 main .table-right .table-report .form-horizontal {
     margin-top: 30px;
 }
+main .table-right .table-report .report-newtime {
+    position: relative;
+}
+/* main .table-right .table-report .report-newtime .{
+    position: absolute;
+} */
 main .table-right {
     width: 79.5%;
     min-height: 842px;
