@@ -169,6 +169,23 @@ $(function () {
             $('body').addClass('modal-open')
         }
     })
+    //点击草稿，ajax
+    mockTest();
+    $("[data-table-name='table-draft']").click(function () {
+        $.ajax({
+            url: "hello.json",
+            dataType: 'json',
+            success: function (result) {
+                console.log(result);
+                console.log(result.list.length)
+                for(var i = 0;i<result.list.length;i++){
+                $(".table-draft tbody").append("<tr><td><input type='checkbox'></td><td class='time-contorl'>" + result.list[i].time + "</td><td>" + result.list[i].group + "</td><td>" + result.list[i].title + "</td><td>" + result.list[i].main + "</td><td>" + result.list[i].next + "</td><td>" + result.list[i].leader + "</td></tr>");                                           
+                }    
+                // $(".table-draft tbody").prepend("<tr><td rowspan='" + $('.new-group').length + "'><input type='checkbox'></td><td class='time-contorl' rowspan='" + $('.new-group').length + "'>" + form[0].value + '~' + form[1].value + "</td><td rowspan='" + $('.new-group').length + "'>" + form[2].value + "</td><td>" + $(".new-group .reportTitle").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");       
+            }
+        });
+    }) 
+
 })
 // 根据周数算出该周工作日的日期
 function getDates(currentTime) {//JS获取当前周从星期一到星期天的日期
@@ -188,3 +205,23 @@ function getWeekToDate() {//由周数计算出该周内的某一日期
     return getDates(timesStamp);
 }
 //--------end------------
+function mockTest() {
+    // test mock
+    var group = ['服务支撑组','技术支撑组','结算管理组'];
+    var date = ['2018.3.26~2018.3.30','2018.2.26~2018.2.30','2018.1.26~2018.1.30']
+    var data = Mock.mock('hello.json', {
+        // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
+        'list|1-10': [{
+            'id': '@id',
+            'time|+1': date,
+            'group|1': group,
+            'title': '@ctitle',
+            'main': '@cparagraph',
+            'next': '@cparagraph',
+            'leader': '@csentence'
+        }]
+    })
+    // 输出结果
+    // console.log(JSON.stringify(data, null, 4))
+    //test mock end
+}

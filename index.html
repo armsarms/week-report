@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="./js/bootstrap/css/bootstrap.min.css">
     <link href="./css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/jquery.min.js"></script>
-    <script src="./js/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./js/index.js"></script>
     <title>weekReport</title>
 </head>
 
@@ -51,17 +48,25 @@
                     </div> -->
                     <div class="form-group report-newtime">
                         <label for="dtp_input1" class="col-md-2 control-label">选择时间区间：</label>
-                        <div class="input-group date form_date col-md-2 time-box" data-date="" data-date-format="yyyy.MM.dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <div class="input-group date form_date col-md-2 time-box" data-date="" data-date-format="yyyy.MM.dd" data-link-field="dtp_input2"
+                            data-link-format="yyyy-mm-dd">
                             <input class="form-control report-time-start" size="16" type="text" value="" readonly placeholder="开始时间" name="report-start-time">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
                         </div>
-                        <input type="hidden" id="dtp_input1" value="" /><br/>
-                      
-                        <div class="input-group date form_date col-md-2 time-box" data-date="" data-date-format="yyyy.MM.dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                              <input class="form-control report-time-end" size="16" type="text" value="" readonly placeholder="结束时间"  name="report-end-time">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <input type="hidden" id="dtp_input1" value="" />
+                        <br/>
+
+                        <div class="input-group date form_date col-md-2 time-box" data-date="" data-date-format="yyyy.MM.dd" data-link-field="dtp_input2"
+                            data-link-format="yyyy-mm-dd">
+                            <input class="form-control report-time-end" size="16" type="text" value="" readonly placeholder="结束时间" name="report-end-time">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
                         </div>
-                        <input type="hidden" id="dtp_input2" value="" /><br/>
+                        <input type="hidden" id="dtp_input2" value="" />
+                        <br/>
                     </div>
                     <div class="form-group report-group">
                         <label for="reportGroup" class="col-sm-2 control-label">所属组别：</label>
@@ -459,7 +464,7 @@
                             </tr>
                             <tr>
                                 <td>服务支撑组</td>
-                                <td>制作周报管理系统</td> 
+                                <td>制作周报管理系统</td>
                                 <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
                                     <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
                                     <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
@@ -483,8 +488,13 @@
         </div>
         <!-- /.modal -->
     </div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     <script type="text/javascript" src=".\js\bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+    <!-- test mock -->
+    <script type="text/javascript" src=".\node_modules\mockjs\dist\mock.js" charset="UTF-8"></script>
+    <script src="./js/index.js"></script>
     <script type="text/javascript">
         $('.form_date').datetimepicker({
             language: 'zh-CN',
@@ -496,6 +506,7 @@
             minView: 2,
             forceParse: 0
         });
+        
     </script>
 </body>
 
