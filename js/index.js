@@ -3,6 +3,7 @@ $(function () {
     var i = 1;
     //点击导航
     $('.table-left ul.nav li').click(function () {
+        $(".table-draft tr[data-change='inChange']").attr('data-change', '');
         $('.table-left ul.nav li').removeClass('active');
         $(this).addClass('active');
         var tableName = $(this).find('a').attr('data-table-name');
@@ -18,18 +19,23 @@ $(function () {
     //新建周报内按钮
     $('.table-report button').click(function () {
         var form = $("#newForm").serializeArray();
-        var time = getWeekToDate();
+        // var time = getWeekToDate();
         switch ($(this).attr('id')) {
             //点击保存
             case 'btnSuccess':
                 if (form[0].value != '' && form[1].value != '') {
-                    for (var i = 0; i < $('.new-group').length; i++) {
+                    for (var i = $('.new-group').length; i > 0; i--) {
                         //插入草稿箱
-                        $(".table-draft tbody").prepend("<tr><td><input type='checkbox'></td><td style='display:none'>" + form[0].value + "</td><td>" + time[0] + '~' + time[4] + "</td><td>" + form[1].value + "</td><td>" + $(".new-group .reportTitle").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");
+                        if (i == 1) { //第一条有合并单元格的时间和单选框，其余的删掉
+                            $(".table-draft tbody").prepend("<tr><td rowspan='" + $('.new-group').length + "'><input type='checkbox'></td><td class='time-contorl' rowspan='" + $('.new-group').length + "'>" + form[0].value + '~' + form[1].value + "</td><td rowspan='" + $('.new-group').length + "'>" + form[2].value + "</td><td>" + $(".new-group .reportTitle").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");
+                        } else {
+                            $(".table-draft tbody").prepend("<tr><td  style='display:none'><input type='checkbox'></td><td class='time-contorl' style='display:none'>" + form[0].value + '~' + form[1].value + "</td><td style='display:none'>" + form[2].value + "</td><td>" + $(".new-group .reportTitle").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");
+                        }
                         // form[4+4*i].value.replace(/\n|\r\n/g,'<br/>'),输入栏导入换行
-                        $('html,body').animate({scrollTop: '0px'}, 200);//滚动到顶部
+                        $('html,body').animate({ scrollTop: '0px' }, 200);//滚动到顶部
                     }
-                    if ($(".table-draft tr[data-change='inChange']").length == 1) {
+                    //将原来的删除掉
+                    if ($(".table-draft tr[data-change='inChange']").length > 0) {
                         $(".table-draft tr[data-change='inChange']").remove();
                     }
                     $('.success-modal').show().fadeOut(2000).text('保存成功');
@@ -85,38 +91,51 @@ $(function () {
         var $check = $('.table-draft .table-hover input:checked');
         //if()，如果new-group.length>1,删除，否则，加一
         if ($check.length == 1) {
-            $check.parents('tr').attr('data-change', 'inChange')
-            $check.parents('tr')
             $("[data-table-name='table-report']").click();
-            if ($('.new-group').length > 1) {
-                $('.new-group').eq(0).siblings('.new-group').remove();
-            } else if ($('.new-group').length < 1) {
-                $('.increase-btn').click();
-            }
-            $check.parents('tr').find('td').each(function (i) {
-                switch (i) {
-                    // 0为单选框，1为隐藏的周数，2为显示的具体日期，3为组别，4工作，6计划，7领导
-                    case 1:
-                        $('#reportTime').val($(this).text());
-                        break;
-                    case 3:
-                        $('#reportGroup').val($(this).text());
-                        break;
-                    case 4:
-                        $('.reportTitle').val($(this).text());
-                        break;
-                    case 5:
-                        $('.reportWeek').val($(this).html().replace(/<br>/g, '\n'));
-                        // $('.reportWeek').val($(this).html().replace(/\n|\r\n/g,'<br/>'));
-                        break;
-                    case 6:
-                        $('.reportNextWeek').val($(this).html().replace(/<br>/g, '\n'));
-                        break;
-                    case 7:
-                        $('.reportConsort').val($(this).html().replace(/<br>/g, '\n'));
-                        break;
+            var sameTime = $check.parents('td').siblings('.time-contorl').text();
+            $('.table-draft .table-hover td.time-contorl').each(function () {
+                if ($(this).text() == sameTime) {
+                    $(this).parents('tr').attr('data-change', 'inChange');
                 }
             })
+
+            for (var i = 0; i < $("[data-change='inChange']").length - 1; i++) {
+                $('.increase-btn').click();
+            }
+            // if ($('.new-group').length > 1) {
+            //     $('.new-group').eq(0).siblings('.new-group').remove();
+            // } else if ($('.new-group').length < 1) {
+            //     $('.increase-btn').click();
+            // }
+            for (var x = 0; x < $("[data-change='inChange']").length; x++) {
+                $("[data-change='inChange']").eq(x).find('td').each(function (i) {
+                    switch (i) {
+                        // 0为单选框，1为时间范围，2为组别，3标题，4工作，5计划，6领导
+                        case 1:
+                            var time = $(this).text().split('~')
+                            $('.report-time-start').val(time[0]);
+                            $('.report-time-end').val(time[1]);
+                            break;
+                        case 2:
+                            $('#reportGroup').val($(this).text());
+                            break;
+                        case 3:
+                            $('.reportTitle').eq(x).val($(this).text());
+                            break;
+                        case 4:
+                            $('.reportWeek').eq(x).val($(this).html().replace(/<br>/g, '\n'));
+                            // $('.reportWeek').val($(this).html().replace(/\n|\r\n/g,'<br/>'));
+                            break;
+                        case 5:
+                            $('.reportNextWeek').eq(x).val($(this).html().replace(/<br>/g, '\n'));
+                            break;
+                        case 6:
+                            $('.reportConsort').eq(x).val($(this).html().replace(/<br>/g, '\n'));
+                            break;
+                    }
+                })
+            }
+
         } else if ($check.length > 1) {
             $('.success-modal').show().fadeOut(2000).text('只能同时编辑一条周报');
         } else {
@@ -140,6 +159,10 @@ $(function () {
     $('.table-receive tr').click(function () {
         $('#myModal').modal('show').find('.modal-title').text($(this).find('td').text())
     })
+    //点击周报历史
+    $('.table-history tr').click(function () {
+        $('#historyModal').modal('show').find('.modal-title').text($(this).find('td').text())
+    })
     //模态框嵌套，解决关闭一个后另一个滚动条消失的问题
     $('.modal').on('hidden.bs.modal', function () {
         if ($('.modal.in').size() >= 1) {
@@ -161,7 +184,7 @@ function getDates(currentTime) {//JS获取当前周从星期一到星期天的�
 function getWeekToDate() {//由周数计算出该周内的某一日期
     var week = $('#reportTime').val().split('-W');
     var thisYear = new Date(week[0] + '-01-01');
-    var timesStamp = thisYear.getTime() + ((week[1] - 1 )* 7 * 24 * 60 * 60 * 1000);
+    var timesStamp = thisYear.getTime() + ((week[1] - 1) * 7 * 24 * 60 * 60 * 1000);
     return getDates(timesStamp);
 }
 //--------end------------
