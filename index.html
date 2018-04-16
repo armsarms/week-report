@@ -43,22 +43,22 @@
             <div class="table-report table-main table-show">
                 <h3>新建周报</h3>
                 <form class="form-horizontal" role="form" id="newForm">
-                    <div class="form-group report-time">
+                    <!-- <div class="form-group report-time">
                         <label class="col-sm-2 control-label">选择时间区间：</label>
                         <div class="col-sm-5">
                             <input class="form-control" id="reportTime" type="week" name="report-time">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group report-newtime">
-                        <label for="dtp_input1" class="col-md-2 control-label">Date Picking</label>
-                        <div class="input-group date form_date col-md-2" data-date="" data-date-format="yyyy.MM.dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            <input class="form-control .report-time-start" size="16" type="text" value="" readonly>
+                        <label for="dtp_input1" class="col-md-2 control-label">选择时间区间：</label>
+                        <div class="input-group date form_date col-md-2 time-box" data-date="" data-date-format="yyyy.MM.dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            <input class="form-control report-time-start" size="16" type="text" value="" readonly placeholder="开始时间" name="report-start-time">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                         </div>
                         <input type="hidden" id="dtp_input1" value="" /><br/>
-
-                        <div class="input-group date form_date col-md-2" data-date="" data-date-format="yyyy.MM.dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                            <input class="form-control .report-time-end" size="16" type="text" value="" readonly>
+                      
+                        <div class="input-group date form_date col-md-2 time-box" data-date="" data-date-format="yyyy.MM.dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                              <input class="form-control report-time-end" size="16" type="text" value="" readonly placeholder="结束时间"  name="report-end-time">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                         </div>
                         <input type="hidden" id="dtp_input2" value="" /><br/>
@@ -143,7 +143,6 @@
                     <thead>
                         <tr>
                             <th class="table-sm-20"></th>
-                            <th style="display:none">周数</th>
                             <th class="table-sm-90">时间</th>
                             <th class="table-sm-100">组别</th>
                             <th class="table-sm-120">标题</th>
@@ -157,7 +156,6 @@
                             <td>
                                 <input type="checkbox">
                             </td>
-                            <td style='display:none'>2018-W13</td>
                             <td class='time-contorl'>2018.3.26~2018.3.30</td>
                             <td>技术支撑组</td>
                             <td>与能力部计费SDK需求管理协同</td>
@@ -175,7 +173,6 @@
                             <td rowspan='2'>
                                 <input type="checkbox">
                             </td>
-                            <td style='display:none'>2018-W17</td>
                             <td class='time-contorl' rowspan='2'>2018.4.23~2018.4.27</td>
                             <td rowspan='2'>服务支撑组</td>
                             <td>测试计费SDK</td>
@@ -194,7 +191,6 @@
                             <td style='display:none'>
                                 <input type="checkbox">
                             </td>
-                            <td style='display:none'>2018-W17</td>
                             <td class='time-contorl' style='display:none'>2018.4.23~2018.4.27</td>
                             <td style='display:none'>技术支撑组</td>
                             <td>制作周报管理系统</td>
@@ -217,57 +213,20 @@
             <div class="table-history table-main">
                 <h3>周报历史</h3>
                 <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th class="table-sm-100">组别</th>
-                            <th class="table-sm-120">标题</th>
-                            <th class="table-sm-300">本周重点工作</th>
-                            <th class="table-sm-240">下周计划</th>
-                            <th class="table-sm-210">需领导协调事项</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
-                            <td>技术支撑组</td>
-                            <td>与能力部计费SDK需求管理协同</td>
-                            <td>1、与能力部开展计费SDK需求管理协同
-                                <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
-                                <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                            <td class="table-sm-20">
+                                <input type="checkbox">
                             </td>
-                            <td>1、取消电气控制传统的“一对一”硬手操方式,将电气量的监控纳入到DCS系统中
-                                <br> 2、预防为主、综合治理”的方针
-                                <br> 3、持续开展“访惠聚”驻村工作,充分发挥驻村工作队、深度贫困村第一书记作用。
-                            </td>
-                            <td>1、取消电气控制传统的“一对一”硬手操方式</td>
+                            <td>工作周报
+                                <br>（2018.3.1—2018.3.5）</td>
                         </tr>
                         <tr>
-                            <td>服务支撑组</td>
-                            <td>测试计费SDK</td>
-                            <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
-                                <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
-                                <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
-                                <br> 4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                            <td>
+                                <input type="checkbox">
                             </td>
-                            <td>1、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
-                                <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
-                                <br> 3、取消电气控制传统的“一对一”硬手操方式。将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
-                            </td>
-                            <td>abcdefghijklmnopqrstuvwxyz</td>
-                        </tr>
-                        <tr>
-                            <td>技术支撑组</td>
-                            <td>制作周报管理系统</td>
-                            <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
-                                <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
-                                <br>3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
-                                <br>4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
-                            </td>
-                            <td>1、将十个方面的重点工作进行细化、量化</td>
-                            <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
-                                <br>2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
-                                <br>3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
-                                <br> 4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
-                            </td>
+                            <td>工作周报
+                                <br>（2018.3.6—2018.3.8）</td>
                         </tr>
                     </tbody>
                 </table>
@@ -450,6 +409,80 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <!-- <caption>周报</caption> -->
+                        <thead>
+                            <tr>
+                                <th class="table-sm-100">组别</th>
+                                <th class="table-sm-120">标题</th>
+                                <th class="table-sm-300">本周重点工作</th>
+                                <th class="table-sm-240" th>下周计划</th>
+                                <th class="table-sm-210">需领导协调事项</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>技术支撑组</td>
+                                <td>与能力部计费SDK需求管理协同</td>
+                                <td>1、与能力部开展计费SDK需求管理协同
+                                    <br>2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                    <br>3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                </td>
+                                <td>1、取消电气控制传统的“一对一”硬手操方式,将电气量的监控纳入到DCS系统中
+                                    <br> 2、预防为主、综合治理”的方针
+                                    <br> 3、持续开展“访惠聚”驻村工作,充分发挥驻村工作队、深度贫困村第一书记作用。
+                                </td>
+                                <td>1、取消电气控制传统的“一对一”硬手操方式</td>
+                            </tr>
+                            <tr>
+                                <td>技术支撑组</td>
+                                <td>测试计费SDK</td>
+                                <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                    <br>2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                    <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                    <br>4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                </td>
+                                <td>1、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                    <br>2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                    <br>3、取消电气控制传统的“一对一”硬手操方式。将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                </td>
+                                <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措</td>
+                            </tr>
+                            <tr>
+                                <td>服务支撑组</td>
+                                <td>制作周报管理系统</td> 
+                                <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                    <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                    <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                    <br> 4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                </td>
+                                <td>1、将十个方面的重点工作进行细化、量化</td>
+                                <td>1、鼓励试点地区将动力蓄电池回收利用工作作为落实生态文明建设要求、推动绿色制造产业发展的重要内容及举措,研究支持新能源汽车动力蓄电池回收利用
+                                    <br> 2、预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                    <br> 3、将十个方面的重点工作进行细化、量化,分解为46大项、108小项。
+                                    <br> 4、取消电气控制传统的“一对一”硬手操方式。预防为主、综合治理”的方针,坚持以人为本,追求本质安全
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
     <script type="text/javascript" src="./js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     <script type="text/javascript" src=".\js\bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
     <script type="text/javascript">

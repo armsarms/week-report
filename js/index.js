@@ -19,7 +19,7 @@ $(function () {
     //新建周报内按钮
     $('.table-report button').click(function () {
         var form = $("#newForm").serializeArray();
-        var time = getWeekToDate();
+        // var time = getWeekToDate();
         switch ($(this).attr('id')) {
             //点击保存
             case 'btnSuccess':
@@ -27,9 +27,9 @@ $(function () {
                     for (var i = $('.new-group').length; i > 0; i--) {
                         //插入草稿箱
                         if (i == 1) { //第一条有合并单元格的时间和单选框，其余的删掉
-                            $(".table-draft tbody").prepend("<tr><td rowspan='" + $('.new-group').length + "'><input type='checkbox'></td><td style='display:none'>" + form[0].value + "</td><td class='time-contorl' rowspan='" + $('.new-group').length + "'>" + time[0] + '~' + time[4] + "</td><td rowspan='" + $('.new-group').length + "'>" + form[1].value + "</td><td>" + $(".new-group .reportTitle").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");
+                            $(".table-draft tbody").prepend("<tr><td rowspan='" + $('.new-group').length + "'><input type='checkbox'></td><td class='time-contorl' rowspan='" + $('.new-group').length + "'>" + form[0].value + '~' + form[1].value + "</td><td rowspan='" + $('.new-group').length + "'>" + form[2].value + "</td><td>" + $(".new-group .reportTitle").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");
                         } else {
-                            $(".table-draft tbody").prepend("<tr><td  style='display:none'><input type='checkbox'></td><td style='display:none'>" + form[0].value + "</td><td class='time-contorl' style='display:none'>" + time[0] + '~' + time[4] + "</td><td style='display:none'>" + form[1].value + "</td><td>" + $(".new-group .reportTitle").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");
+                            $(".table-draft tbody").prepend("<tr><td  style='display:none'><input type='checkbox'></td><td class='time-contorl' style='display:none'>" + form[0].value + '~' + form[1].value + "</td><td style='display:none'>" + form[2].value + "</td><td>" + $(".new-group .reportTitle").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportNextWeek").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td><td>" + $(".new-group .reportConsort").eq(i - 1).val().replace(/\n|\r\n/g, '<br/>') + "</td></tr>");
                         }
                         // form[4+4*i].value.replace(/\n|\r\n/g,'<br/>'),输入栏导入换行
                         $('html,body').animate({ scrollTop: '0px' }, 200);//滚动到顶部
@@ -110,24 +110,26 @@ $(function () {
             for (var x = 0; x < $("[data-change='inChange']").length; x++) {
                 $("[data-change='inChange']").eq(x).find('td').each(function (i) {
                     switch (i) {
-                        // 0为单选框，1为隐藏的周数，2为显示的具体日期，3为组别，4工作，6计划，7领导
+                        // 0为单选框，1为时间范围，2为组别，3标题，4工作，5计划，6领导
                         case 1:
-                            $('#reportTime').val($(this).text());
+                            var time = $(this).text().split('~')
+                            $('.report-time-start').val(time[0]);
+                            $('.report-time-end').val(time[1]);
                             break;
-                        case 3:
+                        case 2:
                             $('#reportGroup').val($(this).text());
                             break;
-                        case 4:
+                        case 3:
                             $('.reportTitle').eq(x).val($(this).text());
                             break;
-                        case 5:
+                        case 4:
                             $('.reportWeek').eq(x).val($(this).html().replace(/<br>/g, '\n'));
                             // $('.reportWeek').val($(this).html().replace(/\n|\r\n/g,'<br/>'));
                             break;
-                        case 6:
+                        case 5:
                             $('.reportNextWeek').eq(x).val($(this).html().replace(/<br>/g, '\n'));
                             break;
-                        case 7:
+                        case 6:
                             $('.reportConsort').eq(x).val($(this).html().replace(/<br>/g, '\n'));
                             break;
                     }
@@ -156,6 +158,10 @@ $(function () {
     //点击接收周报内的表格，获取到表名
     $('.table-receive tr').click(function () {
         $('#myModal').modal('show').find('.modal-title').text($(this).find('td').text())
+    })
+    //点击周报历史
+    $('.table-history tr').click(function () {
+        $('#historyModal').modal('show').find('.modal-title').text($(this).find('td').text())
     })
     //模态框嵌套，解决关闭一个后另一个滚动条消失的问题
     $('.modal').on('hidden.bs.modal', function () {

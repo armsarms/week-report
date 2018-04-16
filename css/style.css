@@ -75,10 +75,19 @@ main .table-right .table-report .form-horizontal {
 }
 main .table-right .table-report .report-newtime {
     position: relative;
+    height: 34px;
 }
-/* main .table-right .table-report .report-newtime .{
+main .table-right .table-report .report-newtime .time-box{
+    padding: 0 15px;
+}
+main .table-right .table-report .report-newtime .time-box:last-of-type{
     position: absolute;
-} */
+    left: 34%;
+    top: 0px;
+}
+main .table-right .report-newtime .time-box input,.input-group-addon{
+    background: white;
+}
 main .table-right {
     width: 79.5%;
     min-height: 842px;
@@ -199,6 +208,9 @@ main .table-receive .table tr {
 }
 #mySelect .modal-dialog select {
     height: 142px;
+}
+#historyModal .modal-dialog {
+    width: 1000px;
 }
 .redWarning {
     border: 2px solid rgb(228, 16, 16);
